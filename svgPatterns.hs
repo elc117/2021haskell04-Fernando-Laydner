@@ -28,7 +28,7 @@ rgbPalette n = take n $ cycle [(255,0,0),(0,255,0),(0,0,255)]
 -------------------------------------------------------------------------------
 
 genRectsInLine :: Int -> [Rect]
-genRectsInLine n  = [((m*(w+gap), 0.0), w, h) | m <- [0..fromIntegral (n-1)]]
+genRectsInLine n  = [((m*(w+gap), k*(h+gap)), w, h) | k <- take 15[0..fromIntegral (n-5)], m <- take 8 [0..fromIntegral (n-1)]]
   where (w,h) = (50,50)
         gap = 10
 
@@ -72,8 +72,8 @@ main = do
         svgfigs = svgElements svgRect rects (map svgStyle palette)
         rects = genRectsInLine nrects
         palette = rgbPalette nrects
-        nrects = 10
-        (w,h) = (1500,500) -- width,height da imagem SVG
+        nrects = 50
+        (w,h) = (2000,500) -- width,height da imagem SVG
 
 
 
